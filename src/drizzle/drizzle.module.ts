@@ -15,8 +15,11 @@ import { PG_CONNECTION } from 'src/constants';
                 password: "mydb123",
                 database: "postgres",
             });
-
-            return drizzle(pool, { schema, logger: true });
+            const client = await pool.connect();
+            const db = drizzle(client, { schema: schema, logger: true, });
+            console.log("dfasdf ", db);
+            
+            return db;
         }
     }],
     exports: [PG_CONNECTION]
