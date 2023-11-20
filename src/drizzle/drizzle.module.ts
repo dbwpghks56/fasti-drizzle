@@ -8,13 +8,15 @@ import { PG_CONNECTION } from 'src/constants';
     providers: [{
         provide: PG_CONNECTION,
         useFactory: async () => {
-            const connectionString = '';
             const pool = new Pool({
-                connectionString,
-                ssl: false,
+                host: "svc.sel5.cloudtype.app",
+                port: 32119,
+                user: "root",
+                password: "mydb123",
+                database: "postgres",
             });
 
-            return drizzle(pool, { schema });
+            return drizzle(pool, { schema, logger: true });
         }
     }],
     exports: [PG_CONNECTION]

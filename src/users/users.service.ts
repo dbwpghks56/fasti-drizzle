@@ -8,4 +8,8 @@ export class UsersService {
     constructor(
         @Inject(PG_CONNECTION) private conn: NodePgDatabase<typeof schema>,
     ) {}
+
+    async findAll() {
+        return await this.conn.query.users.findMany();
+    }
 }
